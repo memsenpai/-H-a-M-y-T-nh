@@ -61,7 +61,7 @@ void paint(int xa,int ya,int xb,int yb){
 int main( )
 {
    cout<<"nhap vao toa do diem A:"<<endl;input(xa,ya);
-  cout<<"nhap vao toa do diem B:xB="<<endl;input(xb,yb);
+  cout<<"nhap vao toa do diem B:"<<endl;input(xb,yb);
   paint(xa,ya,xb,yb);
     
   getch();
