@@ -1,5 +1,6 @@
 //Develop By Hùng
-//Release Date:2/22/2016
+//Release Date 2/22/2016
+//Class KTPM3-k9
 #include <graphics.h>
 #include<iostream>
 #include<conio.h>
