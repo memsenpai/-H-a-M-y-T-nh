@@ -9,98 +9,98 @@ int xa, ya, xb, yb;
 
 int input(int &x, int &y)
 {
-    while (1)
-    {
-        cout << "Enter coordinates X (360x480) :";
-        cin >> x;
-        cout << "Enter coordinates Y (360x480) :";
-        cin >> y;
-        if (x < 360 && y < 480) break;
-        else cout << "Erro data,retype";
-    }
+	while (1)
+	{
+		cout << "Enter coordinates X (360x480) :";
+		cin >> x;
+		cout << "Enter coordinates Y (360x480) :";
+		cin >> y;
+		if (x < 360 && y < 480) break;
+		else cout << "Erro data,retype";
+	}
 }
 void th1()
 {
 
-    if (xa > xb)
-    {
-        int c = xa; xa = xb; xb = c;
-        int b = ya; ya = yb; yb = b;
-    }
-    initwindow(360, 480, "Homework");
-    int x = xa, y = ya;
-    cout << xa << ":" << ya << ":" << xb << ":" << yb << endl;
-    while (x <= xb)
-    {
+	if (xa > xb)
+	{
+		int c = xa; xa = xb; xb = c;
+		int b = ya; ya = yb; yb = b;
+	}
+	initwindow(360, 480, "Homework");
+	int x = xa, y = ya;
 
-        x = x + 1;
-        y = ya + (x - xa) * (yb - ya) / (xb - xa);
-        putpixel(x, round(y), GREEN);
-    }
+	while (x <= xb)
+	{
+
+		x = x + 1;
+		y = ya + (x - xa) * (yb - ya) / (xb - xa);
+		putpixel(x, round(y), GREEN);
+	}
 }
 void th2()
 {
-    if (ya > yb)
-    {
-        int c = xa; xa = xb; xb = c;
-        int b = ya; ya = yb; yb = b;
-    }
-    initwindow(360, 480, "homework");
-    int x = xa, y = ya;
+	if (ya > yb)
+	{
+		int c = xa; xa = xb; xb = c;
+		int b = ya; ya = yb; yb = b;
+	}
+	initwindow(360, 480, "homework");
+	int x = xa, y = ya;
 
-    while (y <= yb)
-    {
-        y = y + 1;
-        x = xa + (y - ya) * 1 / ((yb - ya) / (xb - xa));
-        putpixel(round(x), y, RED);
-    }
+	while (y <= yb)
+	{
+		y = y + 1;
+		x = xa + (y - ya) * (xb - xa) / (yb - ya);
+		putpixel(round(x), y, RED);
+	}
 }
 void th3()
 {
-    if (xa > xb || ya > yb)
-    {
-        int c = xa; xa = xb; xb = c;
-        int b = ya; ya = yb; yb = b;
-    }
-    initwindow(360, 480);
-    for (int x = xa; x <= xb; x++)
-    {
-        putpixel(x, ya, YELLOW);
-    }
+	if (xa > xb || ya > yb)
+	{
+		int c = xa; xa = xb; xb = c;
+		int b = ya; ya = yb; yb = b;
+	}
+	initwindow(360, 480);
+	for (int x = xa; x <= xb; x++)
+	{
+		putpixel(x, ya, YELLOW);
+	}
 
 
 }
 void th4()
 {
-    if (ya > yb || xa > xb)
-    {
-        int c = xa; xa = xb; xb = c;
-        int b = ya; ya = yb; yb = b;
-    }
-    initwindow(360, 480);
-    for (int y = ya; y <= yb; y++)
-    {
-        putpixel(xa, y, GREEN);
-    }
+	if (ya > yb || xa > xb)
+	{
+		int c = xa; xa = xb; xb = c;
+		int b = ya; ya = yb; yb = b;
+	}
+	initwindow(360, 480);
+	for (int y = ya; y <= yb; y++)
+	{
+		putpixel(xa, y, GREEN);
+	}
 }
 void paint(int xa, int ya, int xb, int yb)
 {
 
-    if (xa == xb) { cout << "ok"; th4(); }
-    if (ya == yb) { cout << "ok"; th3(); }
-    else
-    {
-        if (abs((yb - ya) / (xb - xa)) <= 1) th1();
-        else th2();
-    }
+	if (xa == xb) th4();
+	if (ya == yb) th3();
+	else
+	{
+		if (abs((yb - ya) / (xb - xa)) <= 1) th1();
+		else th2();
+	}
 }
 int main()
 {
-    cout << "Enter the coordinates of points A:" << endl; input(xa, ya);
-    cout << "Enter the coordinates of points B:" << endl; input(xb, yb);
-    paint(xa, ya, xb, yb);
+	cout << "Enter the coordinates of points A:" << endl; input(xa, ya);
+	cout << "Enter the coordinates of points B:" << endl; input(xb, yb);
+	paint(xa, ya, xb, yb);
 
-    getch();
-    closegraph();
+	getch();
+	closegraph();
 
 }
