@@ -3,67 +3,82 @@
 #include<conio.h>
 #include<math.h>
 using namespace std;
-int a[480][640],m,xa,ya,xb,yb;
-//m=(yb-ya)/(xb-xa);
+int m,xa,ya,xb,yb;
 
 int input(int &x,int &y){
     while(1){
-cout<<"Nhap vao toa do x:";
+cout<<"Nhap vao toa do 360x480 x:";
 cin>>x;
-cout<<"nhap vao toa do y:";
+cout<<"nhap vao toa do 360x480 y:";
 cin>>y;
 if(x<360 && y<480) break;
 else cout<<"erro data,retype";
 }
 }
 void th1(){
-   
-   //  if(abs(m)<=1){
-                   if(xa>xb){
-                             int xc=0;
-                             xc=xa;xa=xb;xb=xc;
-                             }
+
+                   if(xa>xb || ya>yb){int c=xa;xa=xb;xb=c;
+   int b=ya;ya=yb;yb=b;
+             }
                             initwindow(360,480,"Homework"); 
                      int x=xa,y=ya;
                      while(x<=xb){
-                     putpixel(x,y,GREEN);  
-                    // circle(x,y,2);
+                     
                      x=x+1;
-                       double a=m*(x-xa)+ya;
-                     y=round(a);
-                                         }
+                  y=m*(x-xa)+ya;
+                      putpixel(x,round(y),GREEN);                    }
                    }
-    // }
+   
  void th2(){
-    // if(abs(m)>1){
-                   if(ya>yb){
-                             int xc=0;
-                             xc=ya;ya=yb;yb=xc;
-                             }
+                  if(xa>xb || ya>yb){int c=xa;xa=xb;xb=c;
+   int b=ya;ya=yb;yb=b;
+             }
                              initwindow(360,480,"homework");
                      int x=xa,y=ya;
                      while(y<=yb){
-                     putpixel(x,y,GREEN); 
-                    // circle(x,y,2); 
-                     double a=(1/m)*(y-ya)+xa;
-                    x=round(a);
-                    y=y+1;
+                   y=y+1;
+                   x=xa + (y-ya)*1/m;
+                   
+                     cout<<"sau khi doi:y="<<y<<"x="<<x<<endl;
+                    putpixel(round(x),y,RED); 
+                    
                                          }
                    }
-    // }
-  
+ void th3(){if(xa>xb || ya>yb){int c=xa;xa=xb;xb=c;
+   int b=ya;ya=yb;yb=b;
+             }
+             initwindow(360,480);
+             for(int x=xa;x<=xb;x++){
+                     putpixel(x,ya,YELLOW);
+                     }
+      
+                
+      } 
+      void th4(){if(xa>xb || ya>yb){int c=xa;xa=xb;xb=c;
+   int b=ya;ya=yb;yb=b;
+             }
+             initwindow(360,480);
+             for(int y=ya;y<=yb;y++){
+                     putpixel(xa,y,GREEN);
+                     }
+           }
 void paint(int xa,int ya,int xb,int yb){
      m=(yb-ya)/(xb-xa);
+        if(xa==xb){ cout<<"ok";th4();}
+     if(ya==yb){cout<<"ok";th3();}
      if(abs(m)<=1) th1();
      else th2();
+  
      
      }
 int main( )
 {
    cout<<"nhap vao toa do diem A:"<<endl;input(xa,ya);
-  cout<<"nhap vao toa do diem B:"<<endl;input(xb,yb);
+  cout<<"nhap vao toa do diem B:xb="<<endl;input(xb,yb);
   paint(xa,ya,xb,yb);
-    
+  //initwindow(360,480);
+  //dline(xa,ya,xb,yb,RED);
+ // line(10,20,300,400);
   getch();
 closegraph();
 
