@@ -11,12 +11,12 @@ int input(int &x, int &y)
 {
     while (1)
     {
-        cout << "Nhap vao toa do 360x480 x:";
+        cout << "Enter coordinates X (360x480) :";
         cin >> x;
-        cout << "nhap vao toa do 360x480 y:";
+        cout << "Enter coordinates Y (360x480) :";
         cin >> y;
         if (x < 360 && y < 480) break;
-        else cout << "erro data,retype";
+        else cout << "Erro data,retype";
     }
 }
 void th1()
@@ -96,8 +96,8 @@ void paint(int xa, int ya, int xb, int yb)
 }
 int main()
 {
-    cout << "nhap vao toa do diem A:" << endl; input(xa, ya);
-    cout << "nhap vao toa do diem B:xb=" << endl; input(xb, yb);
+    cout << "Enter the coordinates of points A:" << endl; input(xa, ya);
+    cout << "Enter the coordinates of points B:" << endl; input(xb, yb);
     paint(xa, ya, xb, yb);
 
     getch();
