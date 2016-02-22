@@ -1,9 +1,12 @@
+//Credits By Hùng
+//Release Date:2/22/2016
+
 #include <graphics.h>
 #include<iostream>
 #include<conio.h>
 #include<math.h>
 using namespace std;
-int m,xa,ya,xb,yb;
+int xa,ya,xb,yb;
 
 int input(int &x,int &y){
     while(1){
@@ -17,32 +20,30 @@ else cout<<"erro data,retype";
 }
 void th1(){
 
-                   if(xa>xb || ya>yb){int c=xa;xa=xb;xb=c;
+                   if(xa>xb ){int c=xa;xa=xb;xb=c;
    int b=ya;ya=yb;yb=b;
              }
                             initwindow(360,480,"Homework"); 
                      int x=xa,y=ya;
+                       cout<<xa<<":"<<ya<<":"<<xb<<":"<<yb<<endl;
                      while(x<=xb){
                      
                      x=x+1;
-                  y=m*(x-xa)+ya;
+                  y=ya+(x-xa)*(yb-ya)/(xb-xa);
                       putpixel(x,round(y),GREEN);                    }
                    }
-   
- void th2(){
-                  if(xa>xb || ya>yb){int c=xa;xa=xb;xb=c;
-   int b=ya;ya=yb;yb=b;
+   void th2(){if(ya>yb ){
+                           int c=xa;xa=xb;xb=c;
+                           int b=ya;ya=yb;yb=b;
              }
                              initwindow(360,480,"homework");
                      int x=xa,y=ya;
+                     
                      while(y<=yb){
                    y=y+1;
-                   x=xa + (y-ya)*1/m;
-                   
-                     cout<<"sau khi doi:y="<<y<<"x="<<x<<endl;
-                    putpixel(round(x),y,RED); 
-                    
-                                         }
+                   x=xa + (y-ya)*1/((yb-ya)/(xb-xa));
+                putpixel(round(x),y,RED); 
+                                       }
                    }
  void th3(){if(xa>xb || ya>yb){int c=xa;xa=xb;xb=c;
    int b=ya;ya=yb;yb=b;
@@ -54,8 +55,9 @@ void th1(){
       
                 
       } 
-      void th4(){if(xa>xb || ya>yb){int c=xa;xa=xb;xb=c;
-   int b=ya;ya=yb;yb=b;
+      void th4(){if(ya>yb || xa>xb){
+           int c=xa;xa=xb;xb=c;
+           int b=ya;ya=yb;yb=b;
              }
              initwindow(360,480);
              for(int y=ya;y<=yb;y++){
@@ -63,22 +65,20 @@ void th1(){
                      }
            }
 void paint(int xa,int ya,int xb,int yb){
-     m=(yb-ya)/(xb-xa);
+    
         if(xa==xb){ cout<<"ok";th4();}
-     if(ya==yb){cout<<"ok";th3();}
+     if(ya==yb){cout<<"ok";th3();}else
+     {
      if(abs(m)<=1) th1();
      else th2();
-  
-     
-     }
+  }
+      }
 int main( )
-{
+{ 
    cout<<"nhap vao toa do diem A:"<<endl;input(xa,ya);
   cout<<"nhap vao toa do diem B:xb="<<endl;input(xb,yb);
   paint(xa,ya,xb,yb);
-  //initwindow(360,480);
-  //dline(xa,ya,xb,yb,RED);
- // line(10,20,300,400);
+ 
   getch();
 closegraph();
 
