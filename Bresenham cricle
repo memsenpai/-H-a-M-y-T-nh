@@ -1,0 +1,46 @@
+#include<iostream>
+#include<conio.h>
+#include<graphics.h>
+using namespace std;
+int X, Y, x, y,r,p,x1,y1;
+int create(int &X, int &Y) {
+	cout << "nhap do rong :"; cin >> X;
+	cout << "nhap chieu dai:"; cin >> Y;
+	initwindow(X, Y, "CRICLE");
+}
+int input(int &x, int &y) {
+	while (1) {
+		cout << "nhap x:"; cin >> x;
+		cout << "nhap y:"; cin >> y;
+		if (x <= X && y <= Y)break;
+
+	}
+}
+ void cricle(int x1,int y1,int r) {
+	x = 0; y=r; p = 3 - 2 * r;
+	while (x < y) {
+		putpixel(x + x1, y + y1, 1);
+		putpixel(x + x1, -y + y1, 2);
+		putpixel(-x + x1, y + y1, 3);
+		putpixel(-x + x1, -y + y1, 4);
+		putpixel(y + x1, x + y1, 5);
+		putpixel(y + x1, -x + y1, 6);
+		putpixel(-y + x1, x + y1, 7);
+		putpixel(-y + x1, -x + y1, 8);
+		if (p < 0)p = p + 4 * x - 6;
+		else {
+			p = p - 4 * y + 4 * x + 10;
+			y--;
+			
+	}
+	x++;
+	}
+}
+int main() {
+	create(X, Y);
+	cout << "nhap ban kinh:"; cin >> r;
+	cout << "nhap toa do tam duong tron:" << endl; input(x1, y1);
+	cricle(x1,y1,r);
+	getch();
+	closegraph();
+}
