@@ -1,0 +1,137 @@
+//Developer Hùng
+//Release Date 2/28/2016
+#include<conio.h>
+#include<iostream>
+#include<graphics.h>
+using namespace std;
+int x1, y1, x2, y2, X, Y;
+void create(int &X,int &Y) {
+	cout << "nhap do rong khung hinh:"; cin >> X;
+	cout << "nhap chieu dai khung hinh :"; cin >> Y;
+	initwindow(X, Y, "Bresenham");
+}
+int input(int &x1, int &y1) {
+	while (1) {
+		cout << "nhap toa do x:"; cin >> x;
+		cout << "nhap toa do y:"; cin >> y;
+		if (x <= X && y <= Y)break;
+		else cout << "ERROR & RETYPE";
+
+	}
+}
+
+//song song Ox (y1=y2)
+void th1() {
+	if (x1 > x2) {
+		int x, y;
+		x = x1; x1 = x2; x2 = x;
+		y = y1; y1 = y2; y2 = y;
+	}
+	for (int i = x1; i <= x2; i++) {
+		putpiexel(i, y1, RED);
+	}
+}
+
+
+//song song Oy(x1=x2)
+void th2() {
+	if (y1 > y2) {
+		int x, y;
+		x = x1; x1 = x2; x2 = x;
+		y = y1; y1 = y2; y2 = y;
+
+	}
+	for (int i = y1; i <= y2; i++) {
+		putpixel(x1, i, YELLOW);
+	}
+}
+
+//0<m<=1
+void th3() {
+	if (x1 > x2) {
+		int x, y;
+		x = x1; x1 = x2; x2 = x;
+		y = y1; y1 = y2; y2 = y;
+
+	}
+	int dx = x2 - x1, dy = y2 - y1, x = x1, y = y1, const1 = 2 * dy, const2 = 2 * (dy - dx), p = 2 * dy - dx;
+	whle(x < x2) {
+		if (p < 0) p = p + const1;
+		else {
+			y++;
+			p = p + const2;
+		}
+		x = x + 1;
+		putpixel(x, y, GREEN);
+	}
+
+}
+
+
+//-1<=m<0
+void th4() {
+	if (y1 > y2) {
+		int x, y;
+		x = x1; x1 = x2; x2 = x;
+		y = y1; y1 = y2; y2 = y;
+
+	}
+	int dx = x2 - x1, dy = y2 - y1, const1 = 2 * (dy + dx), const2 = 2dy, p1 = 2 * dy + dx, x = x1, y = y1;
+	while (y < y2) {
+		if (p > 0)p = p + const2;
+		else {
+			y = y + 1;
+			p = p + const1;
+		}
+	}
+}
+
+//m>1,thuat toan giong th3 nhung doi vi tri x voi y
+
+void th5() {
+	int a, b;
+	a = x1; x1 = y1; y1 = a;
+	b = x2; x2 = y2; y2 = b;
+	th3();
+}
+
+//m<-1 ,thuat toan nhu th4 nhung x v y doi cho
+
+void th6() {
+	int a, b;
+	a = x1; x1 = y1; y1 = a;
+	b = x2; x2 = y2; y2 = b;
+	th4();
+}
+
+void draw(int x1,int y1,int x2,int y2) {
+	if (x1 == x2)th2();
+	else if (y1 == y2) th1();
+	else if (0 < m && m <= 1)th3();
+	else if (-1 <= m && m < 0)th4();
+	else if (m > 1)th5();
+	else if (m < -1)th6();
+}
+
+int main()
+{
+	create(X,Y);
+	cout << "nhap toa do diem A:" << endl; input(x1, y1);
+	cout << "nhap tia do diem B:" << endl; input(x2, y2);
+	draw(x1, y1, x2, y2);
+	getch();
+	closegraph();
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
