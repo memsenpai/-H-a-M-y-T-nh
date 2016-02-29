@@ -23,7 +23,7 @@ int input(int &x, int &y) {
 
 //song song Ox (y1=y2)
 void th1() {
-     cout<<"th1"<<endl;
+	cout << "th1" << endl;
 	if (x1 > x2) {
 		int x, y;
 		x = x1; x1 = x2; x2 = x;
@@ -37,7 +37,7 @@ void th1() {
 
 //song song Oy(x1=x2)
 void th2() {
-     cout<<"th2"<<endl;
+	cout << "th2" << endl;
 	if (y1 > y2) {
 		int x, y;
 		x = x1; x1 = x2; x2 = x;
@@ -51,7 +51,7 @@ void th2() {
 
 //0<m<=1
 void th3() {
-     cout<<"th3"<<endl;
+	cout << "th3" << endl;
 	if (x1 > x2) {
 		int x, y;
 		x = x1; x1 = x2; x2 = x;
@@ -60,14 +60,14 @@ void th3() {
 	}
 	int dx = x2 - x1, dy = y2 - y1, x = x1, y = y1, const1 = 2 * dy, const2 = 2 * (dy - dx), p = 2 * dy - dx;
 	while (x < x2) {
-          putpixel(x, y, GREEN);
+		putpixel(x, y, GREEN);
 		if (p < 0) p = p + const1;
 		else {
 			y++;
 			p = p + const2;
 		}
 		x = x + 1;
-		
+
 	}
 
 }
@@ -75,7 +75,7 @@ void th3() {
 
 //-1<=m<0
 void th4() {
-     cout<<"th4"<<endl;
+	cout << "th4" << endl;
 	if (x1 > x2) {
 		int x, y;
 		x = x1; x1 = x2; x2 = x;
@@ -85,40 +85,64 @@ void th4() {
 	int dx = x2 - x1, dy = y2 - y1, const1 = 2 * (dy + dx), const2 = 2 * dy, p = 2 * dy + dx, x = x1, y = y1;
 
 	while (x<x2) {
-          putpixel(x, y, BLUE);
+		putpixel(x, y, BLUE);
 		if (p > 0)p = p + const2;
 		else {
 			y = y - 1;
 			p = p + const1;
 		}
 		x++;
-		
+
 	}
 }
 
 //m>1,thuat toan giong th3 nhung doi vi tri x voi y
 
 void th5() {
-     cout<<"th5"<<endl;
-	int a, b;
-	a = x1; x1 = y1; y1 = a;
-	b = x2; x2 = y2; y2 = b;
-	th3();
+	cout << "th5" << endl;
+	if (y1>y2) {
+		int a, b;
+		a = x1; x1 = x2; x2 = a;
+		b = y1; y1 = y2; y2 = b;
+	}
+
+	int dx = x2 - x1, dy = y2 - y1, x = x1, y = y1, const1 = 2 * dx, const2 = 2 * (dx - dy), p = 2 * dx - dy;
+	while (y<y2) {
+		putpixel(x, y, 5);
+		if (p<0)p += const1;
+		else {
+			p += const2; x++;
+		}
+		y++;
+	}
 }
 
 //m<-1 ,thuat toan nhu th4 nhung x v y doi cho
 
 void th6() {
-     cout<<"th6"<<endl;
-	int a, b;
-	a = x1; x1 = y1; y1 = a;
-	b = x2; x2 = y2; y2 = b;
-	th4();
+	cout << "th6" << endl;
+	if (y1>y2) {
+		int a, b;
+		a = x1; x1 = x2; x2 = a;
+		b = y1; y1 = y2; y2 = b;
+	}
+
+	int dx = x2 - x1, dy = y2 - y1, const1 = 2 * (dy + dx), const2 = 2 * dx, x = x1, y = y1, p = 2 * dx + dy;
+
+
+
+
+	while (y<y2) {
+		putpixel(x, y, 6);
+		if (p>0)p += const2;
+		else { p += const1; x--; }
+		y++;
+	}
 }
 
 void draw(int x1, int y1, int x2, int y2) {
-     float m=(float)(y2-y1)/(x2-x1);
-     cout<<m<<endl;
+	float m = (float)(y2 - y1) / (x2 - x1);
+
 	if (x1 == x2)th2();
 	else if (y1 == y2) th1();
 	else if (0 < m && m <= 1)th3();
@@ -139,9 +163,7 @@ int main()
 
 		if (strcmp(c, "N") == 0) break;
 	}
-    line(60,60,10,110);
-    line(150,50,80,250);
-    getch();
+	getch();
 	closegraph();
 
 
