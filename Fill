@@ -1,0 +1,66 @@
+#include<iostream>
+#include<conio.h>
+#include<graphics.h>
+using namespace std;
+void BoundaryFill(int x, int y, int FillColor, int BoundaryColor) {
+
+
+	int CurrentColor;
+	CurrentColor = getpixel(x, y);
+	cout << CurrentColor << endl;
+	if ((CurrentColor != BoundaryColor) && CurrentColor != FillColor) {
+		putpixel(x, y, FillColor);
+
+		BoundaryFill(x - 1, y, FillColor, BoundaryColor);
+		BoundaryFill(x, y + 1, FillColor, BoundaryColor);
+		BoundaryFill(x + 1, y, FillColor, BoundaryColor);
+		BoundaryFill(x, y - 1, FillColor, BoundaryColor);
+	}
+}
+void toMauBien(int x, int y, int maubien, int mauto) {
+	if (getpixel(x, y) != maubien && getpixel(x, y) != mauto) {
+		int xmax = x, xmin = x;
+		while (getpixel(xmax, y) != maubien)xmax++;
+		while (getpixel(xmin, y) != maubien)xmin--;
+		setcolor(mauto);
+		line(xmin, y, xmax, y);
+		while (getpixel(xmin, y + 1) == maubien)
+			xmin++;
+
+
+		if (xmin <= xmax) {
+
+			toMauBien(xmin, y + 1, maubien, mauto);
+
+			toMauBien(xmin, y - 1, maubien, mauto);
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+int main() {
+	initwindow(360, 480);
+	circle(100, 200, 100);
+	/*line(0,0,200,200);
+	line(0,0,200,0);
+	line(200,0,200,200);*/
+	toMauBien(100, 201, WHITE, 11);
+
+	//BoundaryFill(100,201,BLUE,WHITE);
+	getch();
+	closegraph();
+}
+
+
+
+
