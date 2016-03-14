@@ -20,13 +20,14 @@ void BoundaryFill(int x, int y, int FillColor, int BoundaryColor) {
 void toMauBien(int x, int y, int maubien, int mauto) {
 	if (getpixel(x, y) != maubien && getpixel(x, y) != mauto) {
 		int xmax = x, xmin = x;
-		while (getpixel(xmax, y) != maubien)xmax++;
-		while (getpixel(xmin, y) != maubien)xmin--;
+		while (getpixel(xmax + 1, y) != maubien)xmax++;
+		while (getpixel(xmin - 1, y) != maubien)xmin--;
 		setcolor(mauto);
 		line(xmin, y, xmax, y);
+		while (getpixel(xmin, y - 1) == maubien)
+			xmin++;
 		while (getpixel(xmin, y + 1) == maubien)
 			xmin++;
-
 
 		if (xmin <= xmax) {
 
@@ -44,17 +45,17 @@ void toMauBien(int x, int y, int maubien, int mauto) {
 
 
 
-//edit
+
 
 
 
 int main() {
 	initwindow(360, 480);
-	circle(100, 200, 100);
-	/*line(0,0,200,200);
-	line(0,0,200,0);
-	line(200,0,200,200);*/
-	toMauBien(100, 201, WHITE, 11);
+	//circle(100,200,100);
+	line(0, 0, 200, 200);
+	line(0, 0, 200, 0);
+	line(200, 0, 200, 200);
+	toMauBien(100, 15, WHITE, 11);
 
 	//BoundaryFill(100,201,BLUE,WHITE);
 	getch();
